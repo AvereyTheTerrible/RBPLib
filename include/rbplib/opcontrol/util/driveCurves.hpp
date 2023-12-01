@@ -5,6 +5,7 @@
 #pragma once
 
 #include <cmath>
+#include <algorithm>
 
 #define EPSILON 1e-5
 
@@ -25,10 +26,10 @@ namespace rbplib
 	{
 		if (fabs(igain) < EPSILON)
 			return ivalue;
-		return (powf(2.718, -igain)
+		return std::clamp((powf(2.718, -igain)
 			 + powf(2.718, (fabs(ivalue) - 1))
 			 * (1 - powf(2.718, -igain)))
-			 * ivalue;
+			 * ivalue, -1.0, 1.0);
 	}
 	/**
 	 * Applies a function comprised of a single exponential functions. Inspired by
@@ -45,6 +46,7 @@ namespace rbplib
 	{
 		if (fabs(igain) < EPSILON)
 			return ivalue;
-		return (powf(2.718, igain * (fabs(ivalue) - 1) / 4)) * ivalue;
+		return std::clamp((powf(2.718, igain * (fabs(ivalue) - 1) / 4)) * ivalue, -1.0,
+						  1.0);
 	}
 } // namespace rbplib
