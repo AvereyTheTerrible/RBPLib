@@ -3,3 +3,5 @@
 //
 
 #pragma once
+
+#include "rbplib/opcontrol/util/driveCurves.hpp"
