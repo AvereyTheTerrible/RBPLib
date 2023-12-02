@@ -164,6 +164,21 @@
                     "include/main.h"
                 ],
                 "version": "3.8.0"
+            },
+            "rbplib": {
+                "location": "/home/aku/.config/pros/templates/rbplib@1.0.1",
+                "metadata": {
+                    "origin": "local"
+                },
+                "name": "rbplib",
+                "py/object": "pros.conductor.templates.local_template.LocalTemplate",
+                "supported_kernels": "^3.8.0",
+                "system_files": [
+                    "firmware/rbplib.a"
+                ],
+                "target": "v5",
+                "user_files": [],
+                "version": "1.0.1"
             }
         },
         "upload_options": {}

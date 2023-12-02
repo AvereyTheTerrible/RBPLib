@@ -7,7 +7,7 @@
 #include <cmath>
 #include <algorithm>
 
-#define EPSILON 1e-5
+#define EPSILON 1e-6
 
 namespace rbplib
 {
@@ -24,6 +24,8 @@ namespace rbplib
 	inline double exponentialSumCurve(const double ivalue,
 									  const double igain)
 	{
+		// If gain is 0 (uses < operator because of floating-point inaccuracies) pass
+		// through input value.
 		if (fabs(igain) < EPSILON)
 			return ivalue;
 		return std::clamp((powf(2.718, -igain)
@@ -42,8 +44,10 @@ namespace rbplib
 	 * @return
 	 */
 	inline double scaledExponentialCurve(const double ivalue,
-								  const double igain)
+								  		 const double igain)
 	{
+		// If gain is 0 (uses < operator because of floating-point inaccuracies) pass
+		// through input value.
 		if (fabs(igain) < EPSILON)
 			return ivalue;
 		return std::clamp((powf(2.718, igain * (fabs(ivalue) - 1) / 4)) * ivalue, -1.0,
